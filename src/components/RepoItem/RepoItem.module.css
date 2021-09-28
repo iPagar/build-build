@@ -1,0 +1,22 @@
+.repoItem {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 10px 0;
+    padding: 20px;
+    width: 400px;
+    background-color: whitesmoke;
+    cursor: pointer;
+}
+
+.name {
+    font-weight: bold;
+}
+
+.additional {
+    margin-top: 20px;
+}
+
+.additional>span {
+    padding-right: 20px
+}
