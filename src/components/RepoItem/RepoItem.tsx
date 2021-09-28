@@ -6,7 +6,7 @@ type RepoItemProps = {
   name: string;
   desccription: string;
   stargazerCount: number;
-  primaryLanguageName: string;
+  primaryLanguageName: string | null;
   onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
 };
 
@@ -25,7 +25,7 @@ const RepoItem: React.FC<RepoItemProps> = ({
       </div>
       <div>{desccription}</div>
       <div className={styles.additional}>
-        <span>{primaryLanguageName}</span>
+        {primaryLanguageName && <span>{primaryLanguageName}</span>}
         <span>{stargazerCount}</span>
       </div>
     </div>
