@@ -1,0 +1,10 @@
+.searchInput {
+    width: 100%;
+    border: 1px solid black;
+    line-height: 2em;
+}
+
+.searchInput:focus {
+    border: 1px solid blue;
+    outline: none;
+}
