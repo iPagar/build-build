@@ -10,17 +10,15 @@ import { setContext } from "@apollo/client/link/context";
 import { relayStylePagination } from "@apollo/client/utilities";
 
 export type RepoType = {
-  node: {
-    owner: {
-      login: string;
-    };
-    name: string;
-    description: string;
-    primaryLanguage: {
-      name: string;
-    } | null;
-    stargazerCount: number;
+  owner: {
+    login: string;
   };
+  name: string;
+  description: string;
+  primaryLanguage: {
+    name: string;
+  } | null;
+  stargazerCount: number;
 };
 
 export type LanguageType = {
@@ -97,7 +95,7 @@ export type GetReposType = {
       hasNextPage: boolean;
       endCursor: string;
     };
-    edges: RepoType[];
+    edges: { node: RepoType }[];
   };
 };
 
@@ -151,13 +149,14 @@ function useGetRepos() {
 }
 
 function useGetDetailRepo(name: string, owner: string) {
-  const { data } = useQuery<Partial<RepoDetailType>>(GET_REPO_DETAIL, {
+  const { error, data } = useQuery<Partial<RepoDetailType>>(GET_REPO_DETAIL, {
     variables: { name, owner },
   });
   const repo = data;
 
   return {
     repo,
+    error,
   };
 }
 
