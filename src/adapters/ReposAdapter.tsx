@@ -127,12 +127,14 @@ const client = new ApolloClient({
 });
 
 function useGetRepos() {
-  const [getRepos, { data, fetchMore }] =
+  const [getRepos, { loading, error, data, fetchMore }] =
     useLazyQuery<Partial<GetReposType>>(GET_REPOS);
   const repos = data?.search?.edges;
   const after = data?.search?.pageInfo?.endCursor;
 
   return {
+    loading,
+    error,
     getRepos: (query: string) => {
       getRepos({
         variables: { query },
@@ -149,15 +151,15 @@ function useGetRepos() {
 }
 
 function useGetDetailRepo(name: string, owner: string) {
-  const { error, data } = useQuery<Partial<RepoDetailType>>(GET_REPO_DETAIL, {
-    variables: { name, owner },
-  });
+  const { loading, error, data } = useQuery<Partial<RepoDetailType>>(
+    GET_REPO_DETAIL,
+    {
+      variables: { name, owner },
+    }
+  );
   const repo = data;
 
-  return {
-    repo,
-    error,
-  };
+  return { loading, repo, error };
 }
 
 export { client, useGetRepos, useGetDetailRepo };
