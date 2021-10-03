@@ -7,7 +7,8 @@ import { useHistory } from "react-router-dom";
 
 const SearchPage: React.FC = () => {
   const history = useHistory();
-  const { getRepos, repos, pageInfo, fetchMore } = useGetRepos();
+  const { getRepos, repos, pageInfo, loading, error, fetchMore } =
+    useGetRepos();
 
   async function onInputChange(
     e: React.ChangeEvent<HTMLInputElement>
@@ -59,6 +60,8 @@ const SearchPage: React.FC = () => {
           onClick={onSearchButtonClick}
         />
       )}
+      {loading && <div>Загрузка...</div>}
+      {error && <div>Ошибка</div>}
     </div>
   );
 };

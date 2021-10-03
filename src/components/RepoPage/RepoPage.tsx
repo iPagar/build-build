@@ -10,7 +10,7 @@ const RepoPage: React.FC<RepoPageProps> = ({
     params: { name, owner },
   },
 }) => {
-  const { error, repo } = useGetDetailRepo(name, owner);
+  const { loading, error, repo } = useGetDetailRepo(name, owner);
   const description = repo?.repository?.description;
   const stargazerCount = repo?.repository?.stargazerCount;
   const primaryLanguageName = repo?.repository?.primaryLanguage?.name || null;
@@ -20,7 +20,7 @@ const RepoPage: React.FC<RepoPageProps> = ({
 
   return (
     <>
-      {(!error && (
+      {!loading && !error && (
         <RepoItem
           ownerLogin={owner}
           name={name}
@@ -31,7 +31,9 @@ const RepoPage: React.FC<RepoPageProps> = ({
           issuesCount={issuesCount}
           languages={languages}
         />
-      )) || <div>Ошибка</div>}
+      )}
+      {loading && <div>Загрузка...</div>}
+      {error && <div>Ошибка</div>}
     </>
   );
 };
