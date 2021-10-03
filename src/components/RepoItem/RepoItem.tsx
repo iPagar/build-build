@@ -8,6 +8,7 @@ type RepoItemProps = {
   stargazerCount: number;
   primaryLanguageName: string | null;
   onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
+  props?: unknown;
 };
 
 const RepoItem: React.FC<RepoItemProps> = ({
@@ -17,9 +18,10 @@ const RepoItem: React.FC<RepoItemProps> = ({
   stargazerCount,
   primaryLanguageName,
   onClick,
+  ...props
 }) => {
   return (
-    <div className={styles.repoItem} onClick={onClick}>
+    <div className={styles.repoItem} onClick={onClick} {...props}>
       <div className={styles.name}>
         {ownerLogin}/{name}
       </div>
