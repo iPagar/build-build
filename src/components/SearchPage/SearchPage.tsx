@@ -46,7 +46,7 @@ const SearchPage: React.FC = () => {
             data-owner={ownerLogin}
             ownerLogin={ownerLogin}
             name={name}
-            desccription={description}
+            description={description}
             stargazerCount={stargazerCount}
             primaryLanguageName={primaryLanguageName}
             onClick={onRepoItemClick}
