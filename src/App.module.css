@@ -1,0 +1,8 @@
+* {
+    box-sizing: border-box;
+}
+
+.app {
+    display: flex;
+    justify-content: center;
+}

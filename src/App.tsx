@@ -1,25 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { ApolloProvider } from "@apollo/client";
+import { client } from "./adapters/ReposAdapter";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import styles from "./App.module.css";
+import SearchPage from "./components/SearchPage/SearchPage";
+import RepoPage from "./components/RepoPage/RepoPage";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ApolloProvider client={client}>
+      <Router>
+        <div className={styles.app}>
+          <Switch>
+            <Route path="/:name/:owner" component={RepoPage} />
+            <Route path="/">
+              <SearchPage />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
+    </ApolloProvider>
   );
 }
 
