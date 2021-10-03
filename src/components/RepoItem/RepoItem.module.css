@@ -6,7 +6,6 @@
     padding: 20px;
     width: 100%;
     background-color: whitesmoke;
-    cursor: pointer;
 }
 
 .name {
@@ -19,4 +18,8 @@
 
 .additional>span {
     padding-right: 20px
+}
+
+.pullRequestsCount {
+    margin-top: 20px
 }
